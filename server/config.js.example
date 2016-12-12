@@ -1,0 +1,11 @@
+var mailgun_api_key = "key-yourkey";
+var mailgun_domain = "yourdomain";
+var sendgrid_credentials = "yoursendgridcredentials";
+
+module.exports = {
+    'mailgun_api_key': mailgun_api_key,
+    'mailgun_domain': mailgun_domain,
+    'sendgrid_credentials': sendgrid_credentials
+}
+
+//create config.js file and copy this content into it, then replace dummy credentials with proper values

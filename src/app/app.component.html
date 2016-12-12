@@ -1,3 +1,61 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                {{title}}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row padding-bottom-10">
+        <div class="col-md-5">
+            <input [(ngModel)]="email" type="text" class="form-control"
+                   id="email" name="email" required
+                   #toEmail="ngModel"
+                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+            <p *ngIf="duplicateEmail" class="text-danger">Email has already been added!</p>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary" (click)="addEmail(toEmail.value, '1')" [disabled]="toEmail.invalid">Email TO</button>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary" (click)="addEmail(toEmail.value, '2')" [disabled]="toEmail.invalid">Email BCC</button>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary" (click)="addEmail(toEmail.value, '3')" [disabled]="toEmail.invalid">Email CC</button>
+        </div>
+    </div>
+
+    <div class="row padding-bottom-10">
+        <div class="col-md-5">
+            <div class="email-panel">
+                <div *ngFor="let email of emails" class="email-field">
+                    <span>
+                        {{email.email}},
+                        <span [ngSwitch]="email.type" class="email-type">
+                            <span *ngSwitchCase="'1'">TO</span>
+                            <span *ngSwitchCase="'2'">BCC</span>
+                            <span *ngSwitchCase="'3'">CC</span>
+                        </span>
+                        <i class="fa fa-times cursor-pointer" aria-hidden="true" (click)="removeEmail(email)"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row padding-bottom-10">
+        <div class="col-md-5">
+            <input [(ngModel)]="emailObject.subject" type="text" class="form-control" placeholder="Subject" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11">
+            <textarea [(ngModel)]="emailObject.body" rows="5" class="email-text-area" placeholder="Type your message.."></textarea>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-success" [disabled]="emails.length == 0 || (emails.length != 0 && !emailToExists)" (click)="sendEmail()">Send</button>
+        </div>
+    </div>
+</div>

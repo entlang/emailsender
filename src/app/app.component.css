@@ -1,0 +1,26 @@
+.email-panel {
+    background: #f2f2f2;
+    border: 1px solid #d9d9d9;
+    height: 100px;
+    overflow-x: auto;
+    border-radius: 5px;
+}
+.email-field {   
+    padding: 10px;
+}
+
+.email-text-area{
+    white-space: pre-wrap;
+    width: 100%; 
+    resize: none; 
+    background-color: #fff; color: #333333;
+}
+
+.email-type {
+    color: green;
+    font-weight: bold;
+}
+
+.padding-bottom-10 {
+    padding-bottom: 10px;
+}
